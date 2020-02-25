@@ -1,0 +1,3 @@
+last_name|first_name|date_of_birth|email|phone Number
+ Doe|John|1988/01/07|john.doe@foobar.com|614-580-8483
+ Ann|Mary|2020/02/25|mary.ann@foobar.com|614-580-8483
