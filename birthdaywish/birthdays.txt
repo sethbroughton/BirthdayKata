@@ -1,0 +1,4 @@
+last_name|first_name|date_of_birth|email|phone Number
+Broughton|Seth|2020-02-25|broughton24@gmail.com|6145808483
+ Doe|John|1988-01-07|john.doe@foobar.com|6145808483
+ Ann|Mary|2020-02-25|mary.ann@foobar.com|6145808483

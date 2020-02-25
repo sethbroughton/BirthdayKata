@@ -1,23 +1,24 @@
 package com.birthdaywish;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Date;
+import java.util.List;
 
 public class BirthdayCLI {
 
-	
-	
-	
-	
-	
-	public static void main(String[] args) {
-String bday = "2020-02-25";
-LocalDate birth = LocalDate.of(2020, 02, 25);
+	public void run() throws FileNotFoundException {
+		InputReader data = new InputReader();
+		List<Friend> listOfBirthdays = data.readFile();
+		for(Friend birthday : listOfBirthdays) {
+			System.out.println(birthday);
+		}
+	}
 
-LocalDate today = LocalDate.now();
-	System.out.println(birth.getMonth().equals(today.getMonth()));
-	
+	public static void main(String[] args) throws FileNotFoundException {
+		BirthdayCLI program = new BirthdayCLI();
+		program.run();
 
 	}
 }
