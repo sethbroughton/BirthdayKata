@@ -1,4 +1,4 @@
-# BirthdayKata
+# BirthdayTexter
 Automated Birthday texting using the twilio api 
 
 Reads a .txt file with various names, birthdays and phone numbers.  
