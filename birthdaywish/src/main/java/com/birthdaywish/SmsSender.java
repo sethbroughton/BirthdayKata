@@ -12,14 +12,12 @@ import com.twilio.type.PhoneNumber;
 public class SmsSender {
 
  public static final String ACCOUNT_SID =
-         "ACf6a3f8b73a504ebda64c29e420a2eaa7";
- private String authToken;
+         System.getenv("ACCOUNT_SID");
+         
+ private static final String AUTH_TOKEN = System.getenv("AUTH_TOKEN");
  
  
  public static void main(String[] args) throws FileNotFoundException {
-	 Scanner scanner = new Scanner(System.in);
-	 String AUTH_TOKEN = scanner.nextLine(); //Input Twilio account
-	 
      Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
  	InputReader data = new InputReader();
