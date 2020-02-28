@@ -1,11 +1,11 @@
 ## Project title
-Sudoku Solver
+Auto Birthday Wish 
 
 ## Motivation
-I'm currently learning Java and this was an ideal project for practicing recursion.    
+Automate the task of sending "Happy Birthday" wishes to my friends and family.   
 
 ## Build status
-Initial functionality complete.  I plan to add an UI so the user can more easily input the intial state of the suduku puzzle.  
+Initial functionality complete.  I plan to have this run on a raspberry pi zero where the script runs daily.  
 
 ## Code style
 
