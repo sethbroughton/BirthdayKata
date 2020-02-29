@@ -12,7 +12,6 @@ public class InputReaderTest {
 public void test_valid_input_from_txt_input_file() throws FileNotFoundException {
 	InputReader input = new InputReader();
 	List<Friend> friends = input.readFile();
-	//Assert.assertEquals(friends[1])
 	
 }
 

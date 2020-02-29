@@ -16,7 +16,6 @@ public class SmsSender {
          
  private static final String AUTH_TOKEN = System.getenv("AUTH_TOKEN");
  
- 
  public static void main(String[] args) throws FileNotFoundException {
      Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
@@ -31,5 +30,6 @@ public class SmsSender {
      System.out.println(message.getSid());
 	}
  }
+
 
 }
