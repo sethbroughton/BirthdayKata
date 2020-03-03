@@ -32,18 +32,19 @@ public class Friend {
 		return email;
 	}
 	
-
 	public Friend(String first, String last, LocalDate birthday, String phone, String email) {
 		this.firstName = first;
 		this.lastName = last;
 		this.birthday = birthday;
 		this.phoneNumber = phone;
 		this.email = email;
-		
 	}
 	
-	@Override
 	public String toString() {
+		return getFirstName() + " " + getLastName();
+	}
+	
+	public String happyBirthday() {
 		return String.format("Happy Birthday %s!!!!", getFirstName());
 	}
 

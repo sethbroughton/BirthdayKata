@@ -1,3 +1,5 @@
+/*
+
 package com.birthdaywish.model;
 
 import java.io.File;
@@ -34,3 +36,5 @@ public class InputReader {
 	}
 
 }
+
+*/
