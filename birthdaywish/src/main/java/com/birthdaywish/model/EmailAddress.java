@@ -1,4 +1,4 @@
-package com.birthdaywish;
+package com.birthdaywish.model;
 
 public class EmailAddress {
 	

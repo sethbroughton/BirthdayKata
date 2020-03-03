@@ -1,4 +1,4 @@
-package com.birthdaywish;
+package com.birthdaywish.model;
 //Install the Java helper library from twilio.com/docs/libraries/java
 
 import java.io.FileNotFoundException;

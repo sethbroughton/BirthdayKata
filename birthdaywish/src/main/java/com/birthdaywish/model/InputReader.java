@@ -1,4 +1,4 @@
-package com.birthdaywish;
+package com.birthdaywish.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
