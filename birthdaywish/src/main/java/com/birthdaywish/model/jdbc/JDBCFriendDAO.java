@@ -61,6 +61,8 @@ public class JDBCFriendDAO implements FriendDAO{
 	@Override
 	public List<Friend> isBirthdayToday() {
 		ArrayList<Friend> birthdayFriends = new ArrayList<>();
+		//TODO needs to just match month and day.  
+		//if (birthday.getDayOfYear() == today.getDayOfYear())
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetFriendsWithBirthdaysToday, LocalDate.now());
 		while(results.next()) {
 			Friend theFriend = mapRowToFriend(results);
@@ -76,6 +78,7 @@ public class JDBCFriendDAO implements FriendDAO{
 		theFriend.setFirstName(results.getString("first_name"));
 		theFriend.setLastName(results.getString("last_name"));
 		theFriend.setBirthDay(LocalDate.parse(results.getString("date_of_birth")));
+		theFriend.setPhoneNumber(results.getString("phone_number"));
 		return theFriend;
 	}
 

@@ -10,10 +10,10 @@ public class Friend {
 	private LocalDate birthday;
 	private String phoneNumber;
 	private String email;
-	
+
 	public String getFirstName() {
 		return firstName;
-	} 
+	}
 
 	public String getLastName() {
 		return lastName;
@@ -30,15 +30,15 @@ public class Friend {
 	public String getEmail() {
 		return email;
 	}
-	
+
 	public Friend() {
-		
+
 	}
-	
+
 	public String toString() {
 		return getFirstName() + " " + getLastName();
 	}
-	
+
 	public String happyBirthday() {
 		return String.format("Happy Birthday %s!!!!", getFirstName());
 	}
@@ -54,9 +54,14 @@ public class Friend {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	public void setBirthDay(LocalDate birthDate) {
 		this.birthday = birthDate;
 	}
 
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+
+	}
 
 }

@@ -107,10 +107,9 @@ public class BirthdayCLI {
 		for (Friend birthday : birthdayFriends) {
 			Message message = Message.creator(new PhoneNumber(birthday.getPhoneNumber()), // to
 					new PhoneNumber("+12038750274"), // from
-					birthday.toString()).create();
+					birthday.happyBirthday()).create();
 			System.out.println(message.getSid());
 		}
-
 	}
 
 	private void printHeading(String headingText) {
