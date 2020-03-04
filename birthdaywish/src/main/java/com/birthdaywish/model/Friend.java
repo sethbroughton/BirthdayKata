@@ -4,17 +4,16 @@ import java.time.LocalDate;
 
 public class Friend {
 
-
+	private Long id;
 	private String firstName;
 	private String lastName;
 	private LocalDate birthday;
 	private String phoneNumber;
 	private String email;
 	
-	
 	public String getFirstName() {
 		return firstName;
-	}
+	} 
 
 	public String getLastName() {
 		return lastName;
@@ -32,12 +31,8 @@ public class Friend {
 		return email;
 	}
 	
-	public Friend(String first, String last, LocalDate birthday, String phone, String email) {
-		this.firstName = first;
-		this.lastName = last;
-		this.birthday = birthday;
-		this.phoneNumber = phone;
-		this.email = email;
+	public Friend() {
+		
 	}
 	
 	public String toString() {
@@ -47,5 +42,21 @@ public class Friend {
 	public String happyBirthday() {
 		return String.format("Happy Birthday %s!!!!", getFirstName());
 	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public void setBirthDay(LocalDate birthDate) {
+		this.birthday = birthDate;
+	}
+
 
 }

@@ -10,14 +10,13 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
 public class SmsSender {
-
+/*
  public static final String ACCOUNT_SID =
          System.getenv("ACCOUNT_SID");
          
  private static final String AUTH_TOKEN = System.getenv("AUTH_TOKEN");
  
  public static void main(String[] args) throws FileNotFoundException {
-     Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
  	InputReader data = new InputReader();
 	List<Friend> listOfBirthdays = data.readFile();
@@ -30,6 +29,6 @@ public class SmsSender {
      System.out.println(message.getSid());
 	}
  }
-
+*/
 
 }

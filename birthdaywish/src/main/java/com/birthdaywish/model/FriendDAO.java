@@ -43,5 +43,15 @@ public interface FriendDAO {
 	 * @return a filled out friend object
 	 */
 	public Friend getFriendById(Long id);
+	
+	/**
+	 * Get a friend from the datastore with date_of_birth matches current date
+	 * 
+	 * 
+	 * @return a list of all friends with birthdays today
+	 */
+	
+public List<Friend> isBirthdayToday();
+
 }
 
