@@ -24,7 +24,7 @@ public interface UserDAO {
      * @param password the password of the user we are checking
      * @return true if the user is found and their password matches
      */
-    public boolean isUsernameAndPasswordValid(String userName, String password);
+    public Long isUsernameAndPasswordValid(String userName, String password);
 
     /**
      * Get all of the users from the database.

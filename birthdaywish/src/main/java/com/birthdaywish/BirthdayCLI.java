@@ -75,11 +75,11 @@ public class BirthdayCLI {
 		displayApplicationBanner();
 		while (true) {
 			printHeading("Start Menu");
-			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
+			String choice = (String) menu.getChoiceFromOptions(START_MENU_OPTIONS);
 			if (choice.equals(START_MENU_CREATE_USER)) {
 				createUser();
 			} else if (choice.equals(START_MENU_USER_LOGIN)) {
-				userLogin();
+				if(userLogin()!=null) {
 				while (true) {
 					printHeading("Main Menu");
 					String mainMenuChoice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
@@ -91,9 +91,12 @@ public class BirthdayCLI {
 						System.exit(0);
 					}
 				}	
-			}
+				} else {
+				System.out.println("Invalid User");
+				break;
+				}
+				}
 		}
-	
 	}
 
 	/**
@@ -104,7 +107,6 @@ public class BirthdayCLI {
 		System.out.println("Enter the following information for a new user: ");
 		System.out.flush();
 		String username = menu.userInput("Username: ");
-		//System.out.flush();
 		String password = menu.userInput("Password: ");
 
 		User user = userDAO.saveUser(username, password);
@@ -112,10 +114,14 @@ public class BirthdayCLI {
 		System.out.println();
 	}
 
-	private User userLogin(String userName, String password) {
-    	
-	
-    	
+	private Long userLogin() {
+		System.out.println();
+		System.out.flush();
+		String userName = menu.userInput("Username: ");
+		System.out.flush();
+		String password = menu.userInput("Password: ");
+    	Long userId = userDAO.isUsernameAndPasswordValid(userName, password);
+    	return userId;
     }
 
 	private void handleFriends() {

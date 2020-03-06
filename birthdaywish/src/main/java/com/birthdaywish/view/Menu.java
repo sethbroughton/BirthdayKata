@@ -54,6 +54,7 @@ public class Menu {
 	public String userInput(String option) {
 		out.println();
 		out.println(option);
+		out.flush();
 		String userInput = in.nextLine();
 		return userInput;
 	}
