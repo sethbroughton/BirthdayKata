@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS birthday;
 
 CREATE TABLE birthday
 (
@@ -11,8 +12,18 @@ CREATE TABLE birthday
 	constraint pk_person_id primary key (person_id)
 );
 
+DROP TABLE IF EXISTS userTable;
+
+CREATE TABLE userTable 
+(
+  id serial PRIMARY KEY,
+  username varchar(255) NOT NULL UNIQUE,  
+  password varchar(32) NOT NULL,    
+  salt varchar(256) NOT NULL			
+);
+
 INSERT INTO birthday (first_name, last_name, date_of_birth, email, phone_number)
 VALUES ('Meg', 'Keegan Broughton', '1989-02-24', 'mkeegan89@gmail.com', '7403361202'),
-        ('Seth','Broughton','2020-03-03','broughton.24@gmail.con','6145808483');
+        ('Kevin','Broughton','2020-03-06','broughton.24@gmail.con','6145808483');
 
 

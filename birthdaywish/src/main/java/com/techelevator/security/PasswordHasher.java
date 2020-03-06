@@ -55,6 +55,7 @@ public class PasswordHasher {
      * @param salt the random salt
      * @return the resulting hash as a Key object
      */
+    
     private Key createKey(String password, byte[] salt) {
         SecretKeyFactory factory = getSecretKeyFactory();
         KeySpec keyspec = new PBEKeySpec(password.toCharArray(), salt, WORK_FACTOR, KEY_LENGTH);

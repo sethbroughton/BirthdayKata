@@ -2,7 +2,7 @@ package com.birthdaywish.model;
 
 import java.util.List;
 
-public interface UserDao {
+public interface UserDAO {
     /**
      * Save a new user to the database. The password that is passed in will be
      * salted and hashed before being saved. The original password is never

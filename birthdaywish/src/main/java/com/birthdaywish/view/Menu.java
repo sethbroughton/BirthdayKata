@@ -50,4 +50,11 @@ public class Menu {
 		out.print("\nPlease choose an option >>> ");
 		out.flush();
 	}
+	
+	public String userInput(String option) {
+		out.println();
+		out.println(option);
+		String userInput = in.nextLine();
+		return userInput;
+	}
 }
