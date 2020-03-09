@@ -2,6 +2,7 @@ package com.birthdaywish;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -99,15 +100,22 @@ public class DAOFriendIntegrationTest {
 	Assert.assertEquals(FIRSTNAME, friend.get(0).getFirstName());
 	Assert.assertEquals(LASTNAME, friend.get(0).getLastName());
 	
-
 	}
 	
-//	public void updateFriend(Friend updatedFriend);
-//
-//
-//	public Friend createFriend(Friend newFriend);
-//
-//
+	@Test
+	public void createFriendTest() {
+		Friend friend = new Friend();
+		LocalDate birthDate = LocalDate.parse("07/01/2000", DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+		friend.setBirthDay(birthDate);
+		friend.setFirstName("Bill");
+		friend.setLastName("Sims");
+		friend.setPhoneNumber("61458084838");
+		friend.setEmail("broughton24@gmail.com");
+		friendDAO.createFriend(friend);
+		Assert.assertEquals(2, friendDAO.getAllFriends().size());
+	}
+
+
 //	public Friend getFriendById(Long id);
 //	
 //

@@ -56,10 +56,17 @@ public class JDBCFriendDAO implements FriendDAO {
 
 	@Override
 	public Friend createFriend(Friend newFriend) {
-		String sqlUpdateFriend = "INSERT INTO birthday (first_name = ?, last_name = ?, date_of_birth = ?, email = ?, phone_number = ?) "
-				+ "VALUES (?,?,?,?,?)";
-		jdbcTemplate.update(sqlUpdateFriend, newFriend.getFirstName(), newFriend.getLastName(),
+		String sqlCreateFriend = "INSERT INTO birthday (first_name, last_name, date_of_birth, email, phone_number) "
+				+ "VALUES (?,?,?,?,?) RETURNING person_id";
+		Long friend_id = jdbcTemplate.queryForObject(sqlCreateFriend, Long.class, newFriend.getFirstName(), newFriend.getLastName(),
 				newFriend.getBirthday(), newFriend.getEmail(), newFriend.getPhoneNumber());
+
+		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT * FROM birthday WHERE person_id = ? ", friend_id);
+		Friend theFriend = null;
+		while (results.next()) {
+			theFriend = mapRowToFriend(results);
+		}
+		return theFriend;
 	}
 
 	@Override
