@@ -21,10 +21,10 @@ public class JDBCFriendDAO implements FriendDAO{
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	static final String sqlGetAllFriends = "SELECT * FROM birthday";
 	@Override
 	public List<Friend> getAllFriends() {
 		ArrayList<Friend> allFriends = new ArrayList<>();
+		String sqlGetAllFriends = "SELECT * FROM birthday";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllFriends);
 		while(results.next()) {
 			Friend theFriend = mapRowToFriend(results);
@@ -32,11 +32,17 @@ public class JDBCFriendDAO implements FriendDAO{
 		}
 		return allFriends;
 	}
-
+	 
 	@Override
 	public List<Friend> searchFriendByName(String nameSearch) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Friend> allFriends = new ArrayList<>();
+		String sqlSearchByName = "SELECT * FROM birthday WHERE first_name LIKE ? OR last_name LIKE ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchByName, "%"+nameSearch+"%", "%"+nameSearch+"%");
+		while(results.next()) {
+			Friend theFriend = mapRowToFriend(results);
+			allFriends.add(theFriend);
+		}
+		return allFriends;
 	}
 
 	@Override

@@ -28,6 +28,10 @@ public class DAOFriendIntegrationTest {
 	private static SingleConnectionDataSource dataSource;
 	private JDBCFriendDAO friendDAO;
 	private Long userId;
+	
+	private static final String FIRSTNAME = "Bobby";
+	private static final String LASTNAME = "Brooks";
+	private static final String PHONE_NUMBER = "6145808483";
 
 	/* Before any tests are run, this method initializes the datasource for testing. */
 	@BeforeClass
@@ -55,8 +59,8 @@ public class DAOFriendIntegrationTest {
 		String sqlDelete = "DELETE FROM birthday";
 		jdbcTemplate.update(sqlDelete);
 		String sqlInsertBirthday = "INSERT INTO birthday (first_name, last_name, date_of_birth, email, phone_number) " + 
-				"VALUES  ('Bobby','Broughton',CURRENT_DATE,'broughton.24@gmail.com','6145808483') RETURNING person_id";
-		userId = jdbcTemplate.queryForObject(sqlInsertBirthday, Long.class);
+				"VALUES  (?, ? ,CURRENT_DATE,'broughton.24@gmail.com',?) RETURNING person_id";
+		userId = jdbcTemplate.queryForObject(sqlInsertBirthday, Long.class, FIRSTNAME, LASTNAME, PHONE_NUMBER);
 		friendDAO = new JDBCFriendDAO(dataSource);
 	}
 
@@ -89,5 +93,31 @@ public class DAOFriendIntegrationTest {
 		Assert.assertEquals(friends.get(0).getBirthday(), LocalDate.now());
 	}
 	
+	@Test
+	public void searchFriendByNameTest() {
+	List<Friend> friend = friendDAO.searchFriendByName(FIRSTNAME.substring(0,1));
+	Assert.assertEquals(FIRSTNAME, friend.get(0).getFirstName());
+	Assert.assertEquals(LASTNAME, friend.get(0).getLastName());
+	
+
+	}
+	
+//	public void updateFriend(Friend updatedFriend);
+//
+//
+//	public Friend createFriend(Friend newFriend);
+//
+//
+//	public Friend getFriendById(Long id);
+//	
+//
+//	private boolean friendMatch(Friend friend) {
+//		if(birthday)
+//		birthday = friend.getBirthday();
+//		firstName = friend.getFirstName();
+//		lastName = friend.getLastName();
+//		phoneNumber = friend.getPhoneNumber();
+//		
+//	}
 	
 }
