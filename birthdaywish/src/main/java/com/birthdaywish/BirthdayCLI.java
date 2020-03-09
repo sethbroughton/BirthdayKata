@@ -79,8 +79,7 @@ public class BirthdayCLI {
 			if (choice.equals(START_MENU_CREATE_USER)) {
 				createUser();
 			} else if (choice.equals(START_MENU_USER_LOGIN)) {
-				if(userLogin()!=null) {
-				while (true) {
+				if (userLogin() != null) {
 					printHeading("Main Menu");
 					String mainMenuChoice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 					if (mainMenuChoice.equals(MAIN_MENU_OPTION_FRIENDS)) {
@@ -90,12 +89,10 @@ public class BirthdayCLI {
 					} else if (mainMenuChoice.equals(MAIN_MENU_OPTION_EXIT)) {
 						System.exit(0);
 					}
-				}	
 				} else {
-				System.out.println("Invalid User");
-				break;
+					System.out.println("Invalid User");
 				}
-				}
+			}
 		}
 	}
 
@@ -120,9 +117,9 @@ public class BirthdayCLI {
 		String userName = menu.userInput("Username: ");
 		System.out.flush();
 		String password = menu.userInput("Password: ");
-    	Long userId = userDAO.isUsernameAndPasswordValid(userName, password);
-    	return userId;
-    }
+		Long userId = userDAO.isUsernameAndPasswordValid(userName, password);
+		return userId;
+	}
 
 	private void handleFriends() {
 		printHeading("Friends");
@@ -185,10 +182,5 @@ public class BirthdayCLI {
 		}
 	}
 
-	@SuppressWarnings("resource")
-	private String getUserInput(String prompt) {
-		System.out.print(prompt + " >>> ");
-		return new Scanner(System.in).nextLine();
-	}
 
 }

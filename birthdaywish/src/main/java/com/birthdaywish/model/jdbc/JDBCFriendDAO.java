@@ -56,14 +56,13 @@ public class JDBCFriendDAO implements FriendDAO{
 		return null;
 	}
 	
-	static final String sqlGetFriendsWithBirthdaysToday = "SELECT * FROM birthday WHERE date_of_birth = ?";
+	static final String sqlGetFriendsWithBirthdaysToday = "Select * FROM birthday WHERE (extract (month FROM date_of_birth) = extract (month FROM CURRENT_DATE)) "
+			+ "AND (extract (day FROM date_of_birth) = extract (day FROM CURRENT_DATE))";
 	
 	@Override
 	public List<Friend> isBirthdayToday() {
 		ArrayList<Friend> birthdayFriends = new ArrayList<>();
-		//TODO needs to just match month and day.  
-		//if (birthday.getDayOfYear() == today.getDayOfYear())
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetFriendsWithBirthdaysToday, LocalDate.now());
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetFriendsWithBirthdaysToday);
 		while(results.next()) {
 			Friend theFriend = mapRowToFriend(results);
 			birthdayFriends.add(theFriend);
