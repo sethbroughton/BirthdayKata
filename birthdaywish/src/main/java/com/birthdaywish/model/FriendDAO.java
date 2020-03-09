@@ -26,7 +26,7 @@ public interface FriendDAO {
 	 * 
 	 * @param updatedFriend the friend object to update
 	 */
-	public void updateFriend(Friend updatedFriend);
+	 public void updateFriend(Friend updatedFriend, Long id);
 
 	/**
 	 * Inserts a new friend into the datastore.
@@ -52,6 +52,8 @@ public interface FriendDAO {
 	 */
 	
 public List<Friend> isBirthdayToday();
+
+	
 
 }
 
