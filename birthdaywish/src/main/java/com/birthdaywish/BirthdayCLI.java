@@ -62,7 +62,7 @@ public class BirthdayCLI {
 		this.menu = new Menu(System.in, System.out);
 
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setUrl("jdbc:postgresql://localhost:5432/birthdays");
+		dataSource.setUrl("jdbc:postgresql://localhost:5432/birthday");
 		dataSource.setUsername("postgres");
 		dataSource.setPassword("postgres1");
 
@@ -153,9 +153,7 @@ public class BirthdayCLI {
 	private void handleAddNewFriend() {
 		handleListAllFriends();
 		String firstName = menu.userInput("First Name: ");
-		System.out.flush();
 		String lastName = menu.userInput("Last Name: ");
-		System.out.flush();
 		LocalDate dateOfBirth = menu.userInputDate("Date of birth: ");
 		String phoneNumber = menu.userInput("Phone Number: ");
 		Friend newFriend = new Friend(firstName, lastName, dateOfBirth, phoneNumber);

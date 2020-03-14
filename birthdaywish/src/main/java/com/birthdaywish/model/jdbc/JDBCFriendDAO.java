@@ -48,7 +48,7 @@ public class JDBCFriendDAO implements FriendDAO {
 
 	@Override
 	public void updateFriend(Friend updatedFriend, Long id) {
-		String sqlUpdateFriend = "UPDATE birthday SET first_name = ?, last_name = ?, date_of_birth = ?, phone_number "
+		String sqlUpdateFriend = "UPDATE birthday SET first_name = ?, last_name = ?, date_of_birth = ?, phone_number = ? "
 				+ "WHERE code = ?";
 		jdbcTemplate.update(sqlUpdateFriend, updatedFriend.getFirstName(), updatedFriend.getLastName(),
 				updatedFriend.getBirthday(),  updatedFriend.getPhoneNumber(), id);
