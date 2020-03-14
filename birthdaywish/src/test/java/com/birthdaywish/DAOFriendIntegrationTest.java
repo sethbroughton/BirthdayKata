@@ -28,7 +28,7 @@ public class DAOFriendIntegrationTest {
 	 * session and hence the same database transaction */
 	private static SingleConnectionDataSource dataSource;
 	private JDBCFriendDAO friendDAO;
-	private Long userId;
+	private Long friendId;
 	
 	private static final String FIRSTNAME = "Bobby";
 	private static final String LASTNAME = "Brooks";
@@ -45,7 +45,6 @@ public class DAOFriendIntegrationTest {
 		 * returned by this DataSource. This allows us to rollback
 		 * any changes after each test */
 		dataSource.setAutoCommit(false);
-		
 	}
 
 	/* After all tests have finished running, this method will close the DataSource */
@@ -61,7 +60,7 @@ public class DAOFriendIntegrationTest {
 		jdbcTemplate.update(sqlDelete);
 		String sqlInsertBirthday = "INSERT INTO birthday (first_name, last_name, date_of_birth, phone_number) " + 
 				"VALUES  (?, ? ,CURRENT_DATE,?) RETURNING person_id";
-		userId = jdbcTemplate.queryForObject(sqlInsertBirthday, Long.class, FIRSTNAME, LASTNAME, PHONE_NUMBER);
+		friendId = jdbcTemplate.queryForObject(sqlInsertBirthday, Long.class, FIRSTNAME, LASTNAME, PHONE_NUMBER);
 		friendDAO = new JDBCFriendDAO(dataSource);
 	}
 
@@ -114,10 +113,15 @@ public class DAOFriendIntegrationTest {
 		Assert.assertEquals(2, friendDAO.getAllFriends().size());
 	}
 
+	@Test
+	public void getFriendById() {
+		Friend myFriend = friendDAO.getFriendById(friendId);
+		Assert.assertEquals(FIRSTNAME, myFriend.getFirstName());
+		Assert.assertEquals(PHONE_NUMBER, myFriend.getPhoneNumber());
+		Assert.assertEquals(LocalDate.now(), myFriend.getBirthday());
+	}
+	
 
-//	public Friend getFriendById(Long id);
-//	
-//
 //	private boolean friendMatch(Friend friend) {
 //		if(birthday)
 //		birthday = friend.getBirthday();

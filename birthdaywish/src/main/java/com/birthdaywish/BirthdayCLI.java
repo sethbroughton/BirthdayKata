@@ -69,7 +69,6 @@ public class BirthdayCLI {
 		PasswordHasher passwordHasher = new PasswordHasher();
 		friendDAO = new JDBCFriendDAO(dataSource);
 		userDAO = new JDBCUserDAO(dataSource, passwordHasher);
-
 	}
 
 	private void run() {
@@ -85,7 +84,6 @@ public class BirthdayCLI {
 						System.exit(0);
 					}
 				} 
-
 	}
 	/**
 	 * Add a new user to the system. Anyone can register a new account like this. We
@@ -118,7 +116,7 @@ public class BirthdayCLI {
 		if (choice.equals(FRIEND_MENU_OPTION_ALL_FRIENDS)) {
 			handleListAllFriends();
 		} else if (choice.equals(FRIEND_MENU_OPTION_SEARCH_BY_FRIEND)) {
-			// TODO handleFriendSearch();
+			handleFriendSearch();
 		} else if (choice.equals(FRIEND_MENU_OPTION_SEARCH_BY_BIRTH_MONTH)) {
 			// TODO handleFriendSearchByBirthMonth();
 		} else if (choice.equals(FRIEND_MENU_OPTION_ADD_NEW_FRIEND)) {
@@ -134,6 +132,12 @@ public class BirthdayCLI {
 		printHeading("All Friends");
 		List<Friend> allFriends = friendDAO.getAllFriends();
 		listFriends(allFriends);
+	}
+	
+	private void handleFriendSearch() {
+		String name = menu.userInput("Search by first or last name: ");
+		List<Friend> matchingFriends = friendDAO.searchFriendByName(name);
+		listFriends(matchingFriends);
 	}
 
 	private void handleBirthdayFriends() {

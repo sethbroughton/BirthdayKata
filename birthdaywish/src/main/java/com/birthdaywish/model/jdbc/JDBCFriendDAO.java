@@ -71,8 +71,13 @@ public class JDBCFriendDAO implements FriendDAO {
 
 	@Override
 	public Friend getFriendById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		String sqlFindFriendById = "Select * from birthday WHERE person_id = ? ";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindFriendById, id);
+		Friend theFriend = null;
+		while(results.next()) {
+			theFriend = mapRowToFriend(results);
+		}
+		return theFriend;
 	}
 
 	static final String sqlGetFriendsWithBirthdaysToday = "Select * FROM birthday WHERE (extract (month FROM date_of_birth) = extract (month FROM CURRENT_DATE)) "
