@@ -38,7 +38,7 @@ public class DAOFriendIntegrationTest {
 	@BeforeClass
 	public static void setupDataSource() {
 		dataSource = new SingleConnectionDataSource();
-		dataSource.setUrl("jdbc:postgresql://localhost:5432/birthdays");
+		dataSource.setUrl("jdbc:postgresql://localhost:5432/birthday");
 		dataSource.setUsername("postgres");
 		dataSource.setPassword("postgres1");
 		/* The following line disables autocommit for connections
@@ -59,8 +59,8 @@ public class DAOFriendIntegrationTest {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		String sqlDelete = "DELETE FROM birthday";
 		jdbcTemplate.update(sqlDelete);
-		String sqlInsertBirthday = "INSERT INTO birthday (first_name, last_name, date_of_birth, email, phone_number) " + 
-				"VALUES  (?, ? ,CURRENT_DATE,'broughton.24@gmail.com',?) RETURNING person_id";
+		String sqlInsertBirthday = "INSERT INTO birthday (first_name, last_name, date_of_birth, phone_number) " + 
+				"VALUES  (?, ? ,CURRENT_DATE,?) RETURNING person_id";
 		userId = jdbcTemplate.queryForObject(sqlInsertBirthday, Long.class, FIRSTNAME, LASTNAME, PHONE_NUMBER);
 		friendDAO = new JDBCFriendDAO(dataSource);
 	}
@@ -110,7 +110,6 @@ public class DAOFriendIntegrationTest {
 		friend.setFirstName("Bill");
 		friend.setLastName("Sims");
 		friend.setPhoneNumber("61458084838");
-		friend.setEmail("broughton24@gmail.com");
 		friendDAO.createFriend(friend);
 		Assert.assertEquals(2, friendDAO.getAllFriends().size());
 	}

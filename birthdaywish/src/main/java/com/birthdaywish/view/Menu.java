@@ -89,7 +89,6 @@ public class Menu {
 				localDate = null;
 				out.println("\n*** " + userInput + " is invalid.  Please choose a date in the past. ***\n");
 			}
-	
 		return localDate;
 	}
 
