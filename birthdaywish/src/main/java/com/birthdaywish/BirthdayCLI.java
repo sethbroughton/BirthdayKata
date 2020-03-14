@@ -131,7 +131,7 @@ public class BirthdayCLI {
 		} else if (choice.equals(FRIEND_MENU_OPTION_SEARCH_BY_BIRTH_MONTH)) {
 			// TODO handleFriendSearchByBirthMonth();
 		} else if (choice.equals(FRIEND_MENU_OPTION_ADD_NEW_FRIEND)) {
-			// TODO handleAddNewFriend();
+			handleAddNewFriend();
 		} else if (choice.equals(FRIEND_MENU_OPTION_UPDATE_FRIEND)) {
 			// TODO handleUpdateFriend();
 		} else if (choice.equals(MENU_OPTION_RETURN_TO_MAIN)) {
@@ -158,7 +158,13 @@ public class BirthdayCLI {
 			System.out.println(message.getSid());
 		}
 	}
-
+	
+	private void handleAddNewFriend() {
+		handleListAllFriends();
+		friendDAO.createFriend();
+		
+	
+	}
 	private void printHeading(String headingText) {
 		System.out.println("\n" + headingText);
 		for (int i = 0; i < headingText.length(); i++) {
