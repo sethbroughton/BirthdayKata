@@ -1,5 +1,6 @@
 package com.birthdaywish;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -74,12 +75,6 @@ public class BirthdayCLI {
 	private void run() {
 		displayApplicationBanner();
 		while (true) {
-			printHeading("Start Menu");
-			String choice = (String) menu.getChoiceFromOptions(START_MENU_OPTIONS);
-			if (choice.equals(START_MENU_CREATE_USER)) {
-				createUser();
-			} else if (choice.equals(START_MENU_USER_LOGIN)) {
-				if (userLogin() != null) {
 					printHeading("Main Menu");
 					String mainMenuChoice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 					if (mainMenuChoice.equals(MAIN_MENU_OPTION_FRIENDS)) {
@@ -89,37 +84,33 @@ public class BirthdayCLI {
 					} else if (mainMenuChoice.equals(MAIN_MENU_OPTION_EXIT)) {
 						System.exit(0);
 					}
-				} else {
-					System.out.println("Invalid User");
-				}
-			}
-		}
-	}
+				} 
 
+	}
 	/**
 	 * Add a new user to the system. Anyone can register a new account like this. We
 	 * will call save user on the DAO in order for it to save however it needs to.
 	 */
-	private void createUser() {
-		System.out.println("Enter the following information for a new user: ");
-		System.out.flush();
-		String username = menu.userInput("Username: ");
-		String password = menu.userInput("Password: ");
-
-		User user = userDAO.saveUser(username, password);
-		System.out.println("User " + user.getUsername() + " added with id " + user.getId() + "!");
-		System.out.println();
-	}
-
-	private Long userLogin() {
-		System.out.println();
-		System.out.flush();
-		String userName = menu.userInput("Username: ");
-		System.out.flush();
-		String password = menu.userInput("Password: ");
-		Long userId = userDAO.isUsernameAndPasswordValid(userName, password);
-		return userId;
-	}
+//	private void createUser() {
+//		System.out.println("Enter the following information for a new user: ");
+//		System.out.flush();
+//		String username = menu.userInput("Username: ");
+//		String password = menu.userInput("Password: ");
+//
+//		User user = userDAO.saveUser(username, password);
+//		System.out.println("User " + user.getUsername() + " added with id " + user.getId() + "!");
+//		System.out.println();
+//	}
+//
+//	private Long userLogin() {
+//		System.out.println();
+//		System.out.flush();
+//		String userName = menu.userInput("Username: ");
+//		System.out.flush();
+//		String password = menu.userInput("Password: ");
+//		Long userId = userDAO.isUsernameAndPasswordValid(userName, password);
+//		return userId;
+//	}
 
 	private void handleFriends() {
 		printHeading("Friends");
@@ -161,8 +152,15 @@ public class BirthdayCLI {
 	
 	private void handleAddNewFriend() {
 		handleListAllFriends();
-		friendDAO.createFriend();
+		String firstName = menu.userInput("First Name: ");
+		System.out.flush();
+		String lastName = menu.userInput("Last Name: ");
+		System.out.flush();
+		LocalDate dateOfBirth = menu.userInputDate("Date of birth: ");
+		String phoneNumber = menu.userInput("Phone Number: ");
+		Friend newFriend = new Friend(firstName, lastName, dateOfBirth, phoneNumber);
 		
+		friendDAO.createFriend(newFriend);
 	
 	}
 	private void printHeading(String headingText) {

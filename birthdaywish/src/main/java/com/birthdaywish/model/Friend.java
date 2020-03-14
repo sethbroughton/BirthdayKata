@@ -9,7 +9,7 @@ public class Friend {
 	private String lastName;
 	private LocalDate birthday;
 	private String phoneNumber;
-	private String email;
+
 
 	public String getFirstName() {
 		return firstName;
@@ -27,15 +27,16 @@ public class Friend {
 		return phoneNumber;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
+	public Friend() {
+
 	}
 
-	public Friend() {
+	public Friend(String firstName, String lastName, LocalDate birthday, String phoneNumber) {
+		
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthday = birthday;
+		this.phoneNumber = phoneNumber;
 
 	}
 

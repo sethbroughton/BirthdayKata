@@ -6,7 +6,6 @@ CREATE TABLE birthday
 	first_name varchar(64) not null,
 	last_name varchar(64) not null,
 	date_of_birth date not null,
-	email varchar(64) not null,
 	phone_number varchar(64) not null,
 	
 	constraint pk_person_id primary key (person_id)
@@ -22,12 +21,12 @@ CREATE TABLE userTable
   salt varchar(256) NOT NULL			
 );
 
-INSERT INTO birthday (first_name, last_name, date_of_birth, email, phone_number)
-VALUES ('Meg', 'Keegan Broughton', '1989-02-24', 'mkeegan89@gmail.com', '7403361202'),
-        ('Bobby','Broughton','2020-03-06','broughton.24@gmail.con','6145808483');
+INSERT INTO birthday (first_name, last_name, date_of_birth, phone_number)
+VALUES ('Meg', 'Keegan Broughton', '1989-02-24',  '7403361202'),
+        ('Bobby','Broughton','2020-03-06','6145808483');
 
-INSERT INTO birthday (first_name, last_name, date_of_birth, email, phone_number)
-VALUES  ('Bobby','Broughton','2000-03-09','broughton.24@gmail.con','6145808483');
+INSERT INTO birthday (first_name, last_name, date_of_birth, phone_number)
+VALUES  ('Bobby','Broughton','2000-03-09','6145808483');
         
 Select * FROM birthday WHERE (extract (month FROM date_of_birth) = extract (month FROM CURRENT_DATE)) 
 AND (extract (day FROM date_of_birth) = extract (day FROM CURRENT_DATE));

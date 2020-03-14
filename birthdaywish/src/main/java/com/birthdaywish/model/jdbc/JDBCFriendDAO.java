@@ -48,18 +48,18 @@ public class JDBCFriendDAO implements FriendDAO {
 
 	@Override
 	public void updateFriend(Friend updatedFriend, Long id) {
-		String sqlUpdateFriend = "UPDATE birthday SET first_name = ?, last_name = ?, date_of_birth = ?, email = ?, phone_number "
+		String sqlUpdateFriend = "UPDATE birthday SET first_name = ?, last_name = ?, date_of_birth = ?, phone_number "
 				+ "WHERE code = ?";
 		jdbcTemplate.update(sqlUpdateFriend, updatedFriend.getFirstName(), updatedFriend.getLastName(),
-				updatedFriend.getBirthday(), updatedFriend.getEmail(), updatedFriend.getPhoneNumber(), id);
+				updatedFriend.getBirthday(),  updatedFriend.getPhoneNumber(), id);
 	}
 
 	@Override
 	public Friend createFriend(Friend newFriend) {
-		String sqlCreateFriend = "INSERT INTO birthday (first_name, last_name, date_of_birth, email, phone_number) "
-				+ "VALUES (?,?,?,?,?) RETURNING person_id";
+		String sqlCreateFriend = "INSERT INTO birthday (first_name, last_name, date_of_birth, phone_number) "
+				+ "VALUES (?,?,?,?) RETURNING person_id";
 		Long friend_id = jdbcTemplate.queryForObject(sqlCreateFriend, Long.class, newFriend.getFirstName(), newFriend.getLastName(),
-				newFriend.getBirthday(), newFriend.getEmail(), newFriend.getPhoneNumber());
+				newFriend.getBirthday(),  newFriend.getPhoneNumber());
 
 		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT * FROM birthday WHERE person_id = ? ", friend_id);
 		Friend theFriend = null;

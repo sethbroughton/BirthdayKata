@@ -3,6 +3,8 @@ package com.birthdaywish.view;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Menu {
@@ -56,6 +58,30 @@ public class Menu {
 		out.println(option);
 		out.flush();
 		String userInput = in.nextLine();
+		
+		
 		return userInput;
 	}
+	
+	public LocalDate userInputDate(String option) {
+		LocalDate localDate = null;
+		out.println();
+		out.println(option);
+		out.flush();
+		String userInput = in.nextLine();
+		try {
+			localDate = LocalDate.parse(userInput, DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+		} catch (Exception e) {
+			// eat the exception, an error message will be displayed below since choice will
+			// be null
+		}
+		if (localDate == null) {
+			out.println("\n*** " + userInput + " is an invalid date format ***\n");
+		} else if (localDate.isAfter(LocalDate.now())) {
+			localDate = null;
+			out.println("\n*** " + userInput + " is invalid.  Please choose a date in the past. ***\n");
+		}
+		return localDate;
+	}
+	
 }
