@@ -2,10 +2,10 @@
 Auto Birthday Wish 
 
 ## Motivation
-Automate the task of sending "Happy Birthday" wishes to my friends and family.   
+Automate the task of sending "Happy Birthday" text messages to my friends and family.   
 
 ## Build status
-Initial functionality complete.  I plan to have this run on a raspberry pi zero where the script runs daily.  
+Initial functionality complete.  Currently building a web app user interface.
 
 ## Code style
 
